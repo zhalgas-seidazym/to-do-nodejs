@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head.ejs') %>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container  mt-3">
+        <h2>ToDo</h2>
+        <a href="/new">
+            <button class="btn btn-primary mb-3 ">Добавить задачу</button>
+        </a>
+        <ol class="list-group list-group-numbered">
+
+            <%
+                data.forEach(item => {
+            %>
+
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold"><%= item.title %></div>
+                    <%= item.description %> 
+                </div>
+                <div>
+                    <a href="/edit/<%= item._id %>">
+                        <button class="btn btn-warning">Редактировать</button>
+                    </a>
+                    <button class="btn btn-danger" onclick="deleteItem('<%= item._id %>')">Удалить</button>
+                </div>
+            </li>
+
+            <%
+                })
+            %>
+        </ol>
+    </div>
+
+<!-- this is for axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js" integrity="sha512-JSCFHhKDilTRRXe9ak/FJ28dcpOJxzQaCd3Xg8MyF6XFjODhy/YMCM8HW0TFDckNHWUewW+kfvhin43hKtJxAw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/js/delete.js"></script>
+</body>
+</html>
